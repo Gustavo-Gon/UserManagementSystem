@@ -79,7 +79,7 @@ if (isset($_SESSION['permission']) && $_SESSION['permission'] == 1) {
     </table>
 
     <div style="text-align: right;">
-        <a href="home.php">Back</a>
+        <a href="idex.php">Back</a>
     </div>
 </body>
 </html>
