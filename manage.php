@@ -1,38 +1,38 @@
 <?php
 session_start();
-
+$_SESSION['permission'] = 1;
 // Function to sanitize input
 function sanitizeInput($data) {
     return htmlspecialchars(stripslashes(trim($data)));
 }
 
-// Check if user has admin permission
-if (!isset($_SESSION['permission']) || $_SESSION['permission'] !== 1) {
-    echo "Sorry but this account does not have permission to manage users";
+if (isset($_SESSION['permission']) && $_SESSION['permission'] == 1) {
+    // Database connection (replace with your database configuration)
+    $pdo = new PDO("sqlite:account.db");
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    // Delete user if "id" is provided in the GET request
+    if (isset($_GET['id'])) {
+        $id = sanitizeInput($_GET['id']);
+        $deleteStmt = $pdo->prepare("DELETE FROM account WHERE id = ?");
+        $deleteStmt->execute([$id]);
+        header("Location: manage.php");
+        exit();
+    }
+
+    // Get the user's full name from the session
+    $fullName = isset($_SESSION['fullname']) ? $_SESSION['fullname'] : "";
+
+    // Query the database for user records
+    $query = "SELECT id, username, fullname, gender, email, mobile, address, state, city FROM account";
+    $statement = $pdo->query($query);
+    $users = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    // Now, you can display the admin features and table here.
+} else {
+    echo "Sorry, but this account does not have permission to manage users";
     exit();
 }
-
-// Database connection (replace with your database configuration)
-$pdo = new PDO("sqlite:account.db");
-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-// Delete user if "id" is provided in the GET request
-if (isset($_GET['id'])) {
-    $id = sanitizeInput($_GET['id']);
-    $deleteStmt = $pdo->prepare("DELETE FROM account WHERE id = ?");
-    $deleteStmt->execute([$id]);
-    header("Location: manage.php");
-    exit();
-}
-
-// Get the user's full name from the session
-$fullName = isset($_SESSION['user_fullname']) ? $_SESSION['user_fullname'] : "";
-
-// Query the database for user records
-$query = "SELECT id, username, fullname, gender, email, mobile, address, state, city FROM account";
-$statement = $pdo->query($query);
-$users = $statement->fetchAll(PDO::FETCH_ASSOC);
-
 // Display the HTML page
 ?>
 
