@@ -41,6 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         if ($user) {
             // Successful login
+            $_SESSION['fullname'] = $user['fullname'];
             header('Location: manage.php');
             exit;
         } else {
@@ -56,22 +57,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <html>
 <head>
     <title>Login</title>
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
-    <h2>Login Form</h2>
     <form action="login.php" method="post">
-        <table>
+        <table class="table">
             <tr>
-                <td><label for="username">Username:</label></td>
+                <td colspan="2" class="title">Login Form</td>
+            </tr>
+            <tr>
+                <td><label for="username">Username</label></td>
                 <td><input type="text" id="username" name="username"></td>
             </tr>
             <tr>
-                <td><label for="password">Password:</label></td>
+                <td><label for="password">Password</label></td>
                 <td><input type="password" id="password" name="password"></td>
             </tr>
             <tr>
-                <td><input type="submit" value="Login"></td>
-                <td><a href="index.php">Back to Home</a></td>
+                <td></td> <!-- Empty column -->
+                <td class="button-container">
+                    <a href="index.php" class="back-link">Back</a>
+                    <input type="submit" value="Login" class="login-button">
+                </td>
             </tr>
         </table>
     </form>

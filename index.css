@@ -32,3 +32,35 @@ ul li a.active {
     color: white;
 }
 
+table {
+    border-collapse: collapse;
+    margin-left: 20px;
+
+}
+
+.title {
+    color: white;
+    background-color: blue;
+    text-align: center;
+}
+
+td {
+    border: 1px solid black;
+}
+
+
+.button-container {
+    text-align: right;
+}
+
+.back-link {
+    display: inline-block;
+    padding: 0px 0px; /* Adjust padding as needed */
+    background-color: white; /* Button background color */
+    color: black; /* Button text color */
+    text-decoration: none;
+    border: 1px solid black; /* Button border color */
+    border-radius: 5px; /* Button border radius */
+    text-align: center;
+    font-size: 12px;
+}

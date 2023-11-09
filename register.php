@@ -120,7 +120,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" || !empty($errors)) {
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
-    <h2>Registration Form</h2>
     <?php
     if (isset($_SESSION['message'])) {
         echo "<p>" . $_SESSION['message'] . "</p>";
@@ -135,60 +134,77 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" || !empty($errors)) {
             echo "<p style='color: red;'>$error</p>";
         }
         ?>
-        <p>
-            <label for="username">Username:</label>
-            <input type="text" name="username" id="username" maxlength="50" value="<?php echo $username; ?>">
-        </p>
-        <p>
-            <label for="password">Password:</label>
-            <input type="password" name="password" id="password" maxlength="9">
-        </p>
-        <p>
-            <label for="confirm_password">Confirm Password:</label>
-            <input type="password" name="confirm_password" id="confirm_password" maxlength="9">
-        </p>
-        <p>
-            <label for="fullname">Full Name:</label>
-            <input type="text" name="fullname" id="fullname" maxlength="50">
-        </p>
-        <p>
-            <label for="dob">Date of Birth:</label>
-            <input type="date" name="dob" id="dob">
-        </p>
-        <p>
-        <input type="radio" id="gender" name="gender" value="1">
-        <label for="Male">Male</label><br>
-
-        <input type="radio" id="gender" name="gender" value="2">
-        <label for="Female">Female</label><br>
-
-        <input type="radio" id="gender" name="gender" value="0">
-        <label for="Other">Other</label>
-        </p>
-        <p>
-            <label for="email">Email:</label>
-            <input type="email" name="email" id="email" maxlength="50">
-        </p>
-        <p>
-            <label for="mobile">Mobile:</label>
-            <input type="tel" name="mobile" id="mobile" pattern="[0-9]{3}[0-9]{3}[0-9]{4}">
-        </p>
-        <p>
-            <label for="address">Address:</label>
-            <input type="text" name="address" id="address" maxlength="200">
-        </p>
-        <p>
-            <label for="state">State:</label>
-            <input type="text" name="state" id="state" minlength="2" maxlength="2">
-        </p>
-        <p>
-            <label for="city">City:</label>
-            <input type="text" name="city" id="city" maxlength="20">
-        </p>
-        <p>
-
-            <input type="submit" value="Register">
-        </p>
+    <table>
+        <tr>
+            <td class="title" colspan="2">Registration Form</td>
+        </tr>
+        <tr>
+            <td><label for="username">Username:</label></td>
+            <td><input type="text" name="username" id="username" maxlength="50" value="<?php echo $username; ?>"></td>
+        </tr>
+        <tr>
+            <td><label for="password">Password:</label></td>
+            <td><input type="password" name="password" id="password" maxlength="9"></td>
+        </tr>
+        <tr>
+            <td><label for="confirm_password">Confirm Password:</label></td>
+            <td><input type="password" name="confirm_password" id="confirm_password" maxlength="9"></td>
+        </tr>
+        <tr>
+            <td><label for="fullname">Full Name:</label></td>
+            <td><input type="text" name="fullname" id="fullname" maxlength="50"></td>
+        </tr>
+        <tr>
+            <td><label for="dob">Date of Birth:</label></td>
+            <td><input type="date" name="dob" id="dob"></td>
+        </tr>
+        <tr>
+            <td><label for="gender">Gender:</label></td>
+            <td>
+                <input type="radio" id="gender" name="gender" value="1">
+                <label for="Male">Male</label>
+                
+                <input type="radio" id="gender" name="gender" value="2">
+                <label for="Female">Female</label>
+                
+                <input type="radio" id="gender" name="gender" value="0">
+                <label for="Other">Other</label>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="email">Email:</label></td>
+            <td><input type="email" name="email" id="email" maxlength="50"></td>
+        </tr>
+        <tr>
+            <td><label for="mobile">Mobile:</label></td>
+            <td><input type="tel" name="mobile" id="mobile" pattern="[0-9]{3}[0-9]{3}[0-9]{4}"></td>
+        </tr>
+        <tr>
+            <td><label for="address">Address:</label></td>
+            <td><textarea name="address" id="address" rows="4" maxlength="200"></textarea></td>
+        </tr>
+        <tr>
+        <td><label for="state">State:</label></td>
+            <td>
+                <select name="state" id="state">
+                    <option value="WA">WA</option>
+                    <option value="OR">OR</option>
+                    <option value="CA">CA</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="city">City:</label></td>
+            <td><input type="text" name="city" id="city" maxlength="20"></td>
+        </tr>
+        <tr>
+            <td></td> <!-- Empty column -->
+            <td class="button-container">
+                <a href="index.php" class="back-link">Back</a>
+                <input type="submit" value="Login" class="login-button">
+            </td>
+        </tr>
+    </table>
     </form>
 </body>
 </html>
